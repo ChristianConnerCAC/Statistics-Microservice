@@ -1,4 +1,5 @@
 import MinMax
+import UniqueValues
 
 # User Story #2
 # Given the Statistic Analyzer microservice is running, when I send a request with 
@@ -40,3 +41,32 @@ print("P2 First Request: Max: ", int(maxValue), "/ Min: ", int(minValue))
 maxValue, minValue = MinMax.minMax(requestFour)
 print("P2 Second Request: Max: ", int(maxValue), "/ Min: ", int(minValue))
 # Max should be 4, Min should be 1.
+
+# User Story #3
+# Given the Statistics Analyzer microservice is running, when I send a request
+# with the repeating values 2, 4, 4, 10, and ask for the unique values, then the
+# microservice returns each value only once without repetition: 2, 4, 10.
+
+print("")
+print("User Story 3 Test: [2, 4, 4, 10]")
+thirdStory = [[2, 4, 4, 10]]
+uniqueList = UniqueValues.uniqueValues(thirdStory)
+print("Unique: ", uniqueList)
+
+# Attribute: Reliability:
+# A request containing integers with repeating values
+# for example 1, 1, 2, 3, 4, 4, 4, 4, 5, 6, 7, 7, 7, 8, 9
+# will return each unique value once and show how many times it repeats
+# in parenthesis. The request must succeed 2 times in a row without error.
+
+uniqueOne = [[1, 1, 2, 3, 4, 4, 4, 4, 5, 6, 7, 7, 7, 8, 9]]
+uniqueTwo = [[1, 1, 2, 3, 4, 4, 4, 4, 5, 6, 7, 7, 7, 8, 9]]
+
+print("")
+print("Functional Tests: Reliability")
+print("For [1, 1, 2, 3, 4, 4, 4, 4, 5, 6, 7, 7, 7, 8, 9]")
+uniqueList = UniqueValues.uniqueValues(uniqueOne)
+print("First Unique Test: ", uniqueList)
+uniqueList = UniqueValues.uniqueValues(uniqueTwo)
+print("Second Unique Test: ", uniqueList)
+# Should give you ['1 (1)', '2', '3', '4 (3)', '5', '6', '7 (2)', '8', '9']
